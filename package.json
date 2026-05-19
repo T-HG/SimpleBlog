@@ -1,0 +1,14 @@
+{
+  "name": "simple-blog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix backEnd && npm install --prefix frontend",
+    "start": "npm run dev",
+    "dev": "node scripts/dev.js",
+    "build": "npm --prefix frontend run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

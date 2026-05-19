@@ -3,16 +3,20 @@ const path = require("node:path");
 
 const rootDir = path.resolve(__dirname, "..");
 const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
-const env = {
+const baseEnv = {
   ...process.env,
-  BACKEND_PORT: process.env.BACKEND_PORT || "3000",
-  FRONTEND_PORT: process.env.FRONTEND_PORT || "5173",
+  BACKEND_PORT: process.env.BACKEND_PORT || "3001",
+  FRONTEND_PORT: process.env.FRONTEND_PORT || "3000",
 };
 
 const commands = [
   {
     name: "backend",
     args: ["--prefix", "backEnd", "run", "dev"],
+    env: {
+      ...baseEnv,
+      PORT: baseEnv.BACKEND_PORT,
+    },
   },
   {
     name: "frontend",
@@ -25,10 +29,11 @@ const commands = [
       "--host",
       "0.0.0.0",
     ],
+    env: baseEnv,
   },
 ];
 
-const children = commands.map(({ name, args }) => {
+const children = commands.map(({ name, args, env }) => {
   const child = spawn(npmCommand, args, {
     cwd: rootDir,
     env,

@@ -15,4 +15,4 @@ Full-stack blog app with an Express/Mongoose API and a Vite React frontend.
 npm start
 ```
 
-The root `npm start` script starts the backend on port `3000` and the frontend on port `5173`. The frontend calls `/api`, and Vite proxies those requests to the backend.
+The root `npm start` script starts the frontend on port `3000` and the backend on port `3001`. The frontend calls `/api`, and Vite proxies those requests to the backend.

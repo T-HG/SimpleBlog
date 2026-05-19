@@ -56,9 +56,11 @@ function stopAll(exitCode) {
 
 for (const { name, child } of children) {
   child.on("exit", (code) => {
-    if (!shuttingDown) {
+    if (!shuttingDown && name !== "backend") {
       console.error(`${name} exited with code ${code}`);
       stopAll(code || 0);
+    } else if (!shuttingDown) {
+      console.error(`${name} exited with code ${code}`);
     }
   });
 }
